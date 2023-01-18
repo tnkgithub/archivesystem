@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load myTags %}
+
+{% block link %}
+<link href="{% static 'css/for_rep_som.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block content %}
+<div id="container">
+    {% for i in rep_image %}
+        {% if i != '1' %}
+                <figure>
+                    <a onClick="location.href='./main?imageID={{ i }}&frame=som'">
+                        <img src={{ "/media/images/"|add:i }} alt="写真" class="scale-img">
+
+                        {% if forloop.counter > 110 %}
+                            {% if forloop.counter0|modulo:22 < 8 %}
+                                <p class="fukidashi_up_left">{% get_value image_title i %}</p>
+                            {% elif forloop.counter0|modulo:22 < 16 %}
+                                <p class="fukidashi_up_center">{% get_value image_title i %}</p>
+                            {% else %}
+                                <p class="fukidashi_up_right">{% get_value image_title i %}</p>
+                            {% endif %}
+                        {% else %}
+                            {% if forloop.counter0|modulo:22 < 8 %}
+                                <p class="fukidashi_under_left">{% get_value image_title i %}</p>
+                            {% elif forloop.counter0|modulo:22 < 16 %}
+                                <p class="fukidashi_under_center">{% get_value image_title i %}</p>
+                            {% else %}
+                                <p class="fukidashi_under_right">{% get_value image_title i %}</p>
+                            {% endif %}
+                        {% endif %}
+                    </a>
+                </figure>
+        {% else %}
+            <div></div>
+        {% endif %}
+    {% endfor %}
+</div>
+{% endblock %}

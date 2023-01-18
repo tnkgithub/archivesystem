@@ -1,0 +1,59 @@
+a.btn_01 {
+	display: block;
+    position: flex;
+	text-align: center;
+	text-decoration: none;
+	width: 18%;
+	margin: auto;
+	padding: 1em;
+	font-weight: bold;
+    font-size: 1em;
+	border: 2px solid #27acd9;
+	color: #27acd9;
+	transition: 0.5s;
+}
+a.btn_01:hover {
+	color: #fff;
+	background: #27acd9;
+}
+
+a.btn_02 {
+	display: block;
+    position: flex;
+	text-align: center;
+	text-decoration: none;
+	width: 18%;
+	margin: auto;
+	padding: 1em;
+	font-weight: bold;
+    font-size: 1em;
+	border: 2px solid #d92727;
+	color: #d92727;
+	transition: 0.5s;
+}
+a.btn_02:hover {
+	color: #fff;
+	background: #d92727;
+}
+
+.fukidashi {
+    display: none;
+    position: absolute;
+    z-index: 100;
+    width: max-content;
+    left: 110%;
+    top: 20%;
+    padding: 16px;
+    border:1px solid #333;
+    border-radius: 2px;
+    background: rgb(255, 255, 255);
+    color: rgb(60, 60, 60);
+    font-weight: bold;
+    font-size: 0.5em;
+}
+/*
+a:hover .fukidashi {
+    display: block;
+    cursor: pointer;
+}
+*/

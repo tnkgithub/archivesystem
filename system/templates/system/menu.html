@@ -1,0 +1,34 @@
+{% load static %}
+{% load myTags %}
+<!DOCTYPE html>
+
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width"/>
+        <title></title>
+        <meta name="description" content=""/>
+        <link href="{% static 'css/botton.css' %}" rel="stylesheet" type="text/css">
+
+        <script>
+            function getIdFromSomFrame() {
+
+
+                window.open(menu_url, "menu");
+            }
+        </script>
+
+    </head>
+    <body>
+        <br>
+        <a href="som?imageID={{imageID}}" target="somFrame" class="btn_01">画像
+            <p class="fukidashi">画像が似ている歴史資料を近くにする</p>
+        </a>
+        <br>
+        <a href="title?imageID={{imageID}}" target="somFrame" class="btn_01">タイトル
+            <p class="fukidashi">タイトルが似ている歴史資料を近くにする</p>
+        </a>
+        <br><br>
+        <a href="{% url "rep-image" %}" target="_parent" class="btn_02">代表資料へ戻る</a>
+    </body>
+</html>

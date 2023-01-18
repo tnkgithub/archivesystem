@@ -1,0 +1,61 @@
+{% load static %}
+{% load myTags %}
+
+<!DOCTYPE html>
+<html lang="ja">
+
+    <head>
+        <meta charset="utf-8" />
+        <meta name="vieport" content="width=device-width"/>
+        <title></title>
+        <link href="{% static 'css/for_title_som.css' %}" rel="stylesheet" type="text/css">
+        <script>
+            function getID() {
+                e = window.event;
+                elem = e.target || e.srcElemnt;
+                elemID = elem.id;
+                self_url = 'main?imageID=' + elemID + '&frame=title';
+                window.open(self_url, "_parent")
+            }
+
+            function scrollToImage() {
+                query = parent.location.search.substring(1);
+                param_list = query.split('&')
+                paramater = param_list[0].split('=');
+                id = paramater[1];
+
+                element = document.getElementById(id);
+
+                if(element.style.borderWidth == "3px"){
+                    element.style.borderWidth = "0px";
+                }else{
+                    element.style.border = "solid 3px black";
+                }
+
+                element.scrollIntoView({
+                    behavior: "smooth",
+                    block: "center",
+                    inline: "center"
+                });
+            }
+        </script>
+
+
+    </head>
+    <body onload="scrollToImage()">
+        <div id="container">
+            {% for i in title_list %}
+                {% if i != '-1' %}
+                    <figure>
+                        <a href={% get_value links i %} onclick="getID()" target="explanation" >
+                        <img src={{ "/media/images/"|add:i }} alt="写真" class="scale-img" id="{{ i }}">
+                        </a>
+                        <figcaption>{% get_value image_title i %}</figcaption>
+                    </figure>
+                {% else %}
+                    <div></div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </body>
+</html>
