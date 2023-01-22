@@ -120,8 +120,8 @@ DEFAULT_CHARSET = "utf-8"
 
 import os
 STATIC_URL = 'static/'
-#STATICFILES_DIRS = [BASE_DIR / 'static']
-STATIC_ROOT = '/home/b1019035/b1019035.pythonanywhere.com/static'
+STATICFILES_DIRS = [BASE_DIR / 'static']
+#STATIC_ROOT = '/home/b1019035/b1019035.pythonanywhere.com/static'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 

@@ -1,13 +1,11 @@
 figure {
     display: inline-block;
-    z-index: 0;
     margin: 2px 2px 2px 2px;
     background-color: rgb(241, 241, 241);
     border: 1px solid #ccc;
 }
 figure img {
     display: block;
-    z-index: 0;
     width: 100%;
     margin: 0px 0px 2px 0px;
 }
@@ -24,7 +22,7 @@ figcaption {
 }
 #container{
     display: grid;
-    grid-template-columns: repeat(11, 100px);
+    grid-template-columns: repeat(11, 110px);
     column-gap: 4px;
     row-gap: 4px;
 }
