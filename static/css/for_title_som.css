@@ -1,13 +1,15 @@
 figure {
     display: inline-block;
-    margin: 1px 1px 1px 1px;
+    z-index: 0;
+    margin: 2px 2px 2px 2px;
     background-color: rgb(241, 241, 241);
     border: 1px solid #ccc;
 }
 figure img {
     display: block;
+    z-index: 0;
     width: 100%;
-    margin: 0px 0px 0px 0px;
+    margin: 0px 0px 2px 0px;
 }
 figcaption {
     font-size: 0.8em;
