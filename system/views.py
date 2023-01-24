@@ -1,12 +1,14 @@
+#%%
 from django.shortcuts import render
 from django.views.decorators.clickjacking import xframe_options_exempt
 import pandas as pd
 import scipy.spatial.distance as distance
 import itertools
-
+import numpy as np
 # 類似度の基準値
 similarity_standard_value = 0.45
 
+#%%
 # 画像によるsom結果(扱いやすくするためリストに変換)
 som = pd.read_csv('system/csvs/image_som_result20230110_073816.csv', index_col=0)
 list_som = []
@@ -35,7 +37,7 @@ title_image = pd.read_csv('system/csvs/title_imageName_rename_dict.csv', index_c
 title_features = pd.read_csv('system/csvs/titleVectorsNoANDNumber.csv', index_col=0)
 
 #%%
-''' テスト用
+'''
 som = pd.read_csv('csvs/image_som_result20230110_073816.csv', index_col=0)
 list_som = []
 for i in som.index:
@@ -57,6 +59,8 @@ title_image = pd.read_csv('csvs/title_imageName_rename_dict.csv', index_col=0).t
 title_features = pd.read_csv('csvs/titleVectorsNoANDNumber.csv', index_col=0)
 image_title_num = pd.read_csv('csvs/imageName_title_dict.csv', index_col=0).to_dict()
 '''
+
+#%%
 @xframe_options_exempt
 
 # 代表資料提示画面用
@@ -91,13 +95,13 @@ def SOM(request):
     ctx = {}
     ctx["image_title"] = image_title['col2']
     ctx["links"] = links['col2']
-    ctx["image_som"] = list_som
     if "imageID" in request.GET:
         id_list = request.GET["imageID"]
         id_split = id_list.split(' ')
         id = id_split[0]
         ctx["imageID"] = id
 
+    ctx["image_som"] = part_som(id)
     return render(request, 'system/som.html', ctx)
 
 # somとタイトル切り替え画面用
@@ -211,3 +215,36 @@ def spiral_list(image):
                 print(i, image_list[j])
 
     return(image_list)
+
+
+#%%
+def part_som(id):
+    np_array = np.empty_like(list_som)
+    for i in range(len(list_som)):
+        np_array[i] = list_som[i]
+
+        if list_som[i] == id:
+            center = i
+
+    # 2次元配列に変換
+    np_array_2dem = np_array.reshape(-1, 66)
+
+    # 中心となる場所（2次元上）x縦、y横
+    x = int(center / 66)
+    y = center % 66
+
+    # 縦：ｍ 横：ｎ
+    m = 11
+    n = 11
+    part_list_2dem = [['1' for i in range(m)] for j in range(n)]
+
+    for i in range(m):
+        for j in range(n):
+            tmpX = x + (i - 5)
+            tmpY = y + (j - 5)
+            if tmpX >= 0 and tmpX < 28 and tmpY >= 0 and tmpY < 66:
+                part_list_2dem[i][j] = np_array_2dem[tmpX][tmpY]
+
+    part_list = []
+    part_list = sum(part_list_2dem, [])
+    return part_list

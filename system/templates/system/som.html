@@ -50,14 +50,14 @@
                         <a href={% get_value links i %}  onclick="getID()" target="explanation" >
                             <img src={{ "/media/images/"|add:i }} alt="写真" class="scale-img" id="{{ i }}">
 
-                            {% if forloop.counter > 1782 %}
-                                {% if forloop.counter0|modulo:66 > 60 %}
+                            {% if forloop.counter > 71 %}
+                                {% if forloop.counter0|modulo:11 > 7 %}
                                     <p class="fukidashi_up_right">{% get_value image_title i %}</p>
                                 {% else %}
                                     <p class="fukidashi_up_left">{% get_value image_title i %}</p>
                                 {% endif %}
                             {% else %}
-                                {% if forloop.counter0|modulo:66 > 60 %}
+                                {% if forloop.counter0|modulo:11 > 7 %}
                                     <p class="fukidashi_under_right">{% get_value image_title i %}</p>
                                 {% else %}
                                     <p class="fukidashi_under_left">{% get_value image_title i %}</p>

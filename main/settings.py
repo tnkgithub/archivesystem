@@ -118,7 +118,6 @@ DEFAULT_CHARSET = "utf-8"
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-import os
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 #STATIC_ROOT = '/home/FUNb1019035/myenv/archivesystem/static'
