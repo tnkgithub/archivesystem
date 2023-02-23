@@ -4,7 +4,7 @@ from django.views.decorators.clickjacking import xframe_options_exempt
 import pandas as pd
 import scipy.spatial.distance as distance
 import itertools
-import numpy as np
+
 # 類似度の基準値
 similarity_standard_value = 0.0
 
@@ -314,34 +314,3 @@ def part_image(id):
         count += 1
         if count == 100:
             return part_dict
-    '''
-    np_array = np.empty_like(list_som)
-    for i in range(len(list_som)):
-        np_array[i] = list_som[i]
-
-        if list_som[i] == id:
-            center = i
-
-    # 2次元配列に変換
-    np_array_2dem = np_array.reshape(-1, 66)
-
-    # 中心となる場所（2次元上）x縦、y横
-    x = int(center / 66)
-    y = center % 66
-
-    # 縦：ｍ 横：ｎ
-    m = 11
-    n = 11
-    part_list_2dem = [['1' for i in range(m)] for j in range(n)]
-
-    for i in range(m):
-        for j in range(n):
-            tmpX = x + (i - 5)
-            tmpY = y + (j - 5)
-            if tmpX >= 0 and tmpX < 28 and tmpY >= 0 and tmpY < 66:
-                part_list_2dem[i][j] = np_array_2dem[tmpX][tmpY]
-
-    part_list = []
-    part_list = sum(part_list_2dem, [])
-    return part_list
-    '''
