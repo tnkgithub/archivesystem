@@ -36,6 +36,13 @@ a.btn_02:hover {
 	background: #d92727;
 }
 
+.slider {
+    position: fixed;
+    z-index: 20;
+    top: 10px;
+    left: 30px;
+}
+
 .fukidashi {
     display: none;
     position: absolute;

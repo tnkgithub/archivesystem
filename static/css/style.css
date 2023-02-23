@@ -5,14 +5,14 @@
     flex-direction: row;
 }
 .class_menu {
-    width: 5%;
+    width: 8%;
     overflow-y: hidden;
 }
 .class_som {
     width: 50%;
 }
 .archive {
-    width: 45%;
+    width: 42%;
 }
 * {
     margin: 0;

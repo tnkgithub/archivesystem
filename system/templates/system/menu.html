@@ -10,13 +10,7 @@
         <meta name="description" content=""/>
         <link href="{% static 'css/botton.css' %}" rel="stylesheet" type="text/css">
 
-        <script>
-            function getIdFromSomFrame() {
 
-
-                window.open(menu_url, "menu");
-            }
-        </script>
 
     </head>
     <body>
@@ -28,7 +22,8 @@
         <a href="title?imageID={{imageID}}" target="somFrame" class="btn_01">タイトル
             <p class="fukidashi">タイトルが似ている歴史資料を近くにする</p>
         </a>
-        <br><br>
+        <br>
+        <br>
         <a href="{% url "rep-image" %}" target="_parent" class="btn_02">代表資料へ戻る</a>
     </body>
 </html>

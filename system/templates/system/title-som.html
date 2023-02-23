@@ -28,11 +28,13 @@
 
                 element.style.outline = "solid 5px #27acd9";
 
+                /*
                 element.scrollIntoView({
                     behavior: "smooth",
                     block: "center",
                     inline: "center"
                 });
+                */
             }
         </script>
 
@@ -40,13 +42,26 @@
     </head>
     <body onload="scrollToImage()">
         <div id="container">
-            {% for i in title_list %}
-                {% if i != '-1' %}
-                    <figure>
-                        <a href={% get_value links i %} onclick="getID()" target="explanation" >
-                        <img src={{ "/media/images/"|add:i }} alt="写真" class="scale-img" id="{{ i }}">
+            {% for key, value in sorted_dict.items %}
+                {% if key != '-1' %}
+                    <figure style="--color: rgb(0, 81, 255, {{ 1.0|multiplication:value }});">
+                        <a href={% get_value links key %} onclick="getID()" target="explanation" >
+                        <img src={{ "/media/images/"|add:key }} alt="写真" class="scale-img" id="{{ key }}">
+                        {% if forloop.counter > 71 %}
+                            {% if forloop.counter0|modulo:11 > 5 %}
+                                <p class="fukidashi_up_right">{% get_value image_title key %}</p>
+                            {% else %}
+                                <p class="fukidashi_up_left">{% get_value image_title key %}</p>
+                            {% endif %}
+                        {% else %}
+                            {% if forloop.counter0|modulo:11 > 5 %}
+                                <p class="fukidashi_under_right">{% get_value image_title key %}</p>
+                            {% else %}
+                                <p class="fukidashi_under_left">{% get_value image_title key %}</p>
+                            {% endif %}
+                        {% endif %}
                         </a>
-                        <figcaption>{% get_value image_title i %}</figcaption>
+                        <figcaption style="--font_color: hsla(360, 0%, {% for_text value %}%, 1)">{% get_value image_title key %}</figcaption>
                     </figure>
                 {% else %}
                     <p>　　</p>
