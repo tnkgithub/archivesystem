@@ -39,29 +39,6 @@ image_features = pd.read_csv('system/csvs/rename_featuresTitle_pca_350_MinMax.cs
 # タイトルのベクトル表現
 title_features = pd.read_csv('system/csvs/titleVectorsNoANDNumber.csv', index_col=0)
 
-#%%
-'''
-som = pd.read_csv('csvs/image_som_result20230110_073816.csv', index_col=0)
-list_som = []
-for i in som.index:
-    list_som.append(i)
-
-title_som = pd.read_csv('csvs/title_som_result20230110_092259.csv', index_col=0)
-list_title = []
-for i in title_som.index:
-    list_title.append(i)
-
-represent_image = pd.read_csv('csvs/rep_image_som_result20230110_094856_3-3.csv', index_col=0)
-rep_image = []
-for i in represent_image.index:
-    rep_image.append(i)
-
-image_title = pd.read_csv('csvs/imageName_title_rename_dict.csv', index_col=0).to_dict()
-links = pd.read_csv('csvs/imageName_link_rename_dict.csv', index_col=0).to_dict()
-title_image = pd.read_csv('csvs/title_imageName_rename_dict.csv', index_col=0).to_dict()
-title_features = pd.read_csv('csvs/titleVectorsNoANDNumber.csv', index_col=0)
-image_title_num = pd.read_csv('csvs/imageName_title_dict.csv', index_col=0).to_dict()
-'''
 
 #%%
 @xframe_options_exempt

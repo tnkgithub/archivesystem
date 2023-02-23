@@ -153,7 +153,7 @@ figure img:hover + .fukidashi_up_right{
 
 #container{
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    grid-template-columns: repeat(10, 1fr);
     column-gap: 4px;
     row-gap: 4px;
 }

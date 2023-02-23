@@ -40,7 +40,7 @@
 
 
     </head>
-    <body onload="scrollToImage()">
+    <body>
         <div id="container">
             {% for key, value in sorted_dict.items %}
                 {% if key != '-1' %}
@@ -48,13 +48,13 @@
                         <a href={% get_value links key %} onclick="getID()" target="explanation" >
                         <img src={{ "/media/images/"|add:key }} alt="写真" class="scale-img" id="{{ key }}">
                         {% if forloop.counter > 71 %}
-                            {% if forloop.counter0|modulo:11 > 5 %}
+                            {% if forloop.counter0|modulo:10 > 5 %}
                                 <p class="fukidashi_up_right">{% get_value image_title key %}</p>
                             {% else %}
                                 <p class="fukidashi_up_left">{% get_value image_title key %}</p>
                             {% endif %}
                         {% else %}
-                            {% if forloop.counter0|modulo:11 > 5 %}
+                            {% if forloop.counter0|modulo:10 > 5 %}
                                 <p class="fukidashi_under_right">{% get_value image_title key %}</p>
                             {% else %}
                                 <p class="fukidashi_under_left">{% get_value image_title key %}</p>
