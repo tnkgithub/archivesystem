@@ -48,7 +48,8 @@
         <div id="container">
             {% for key, value in sorted_dict.items %}
                 {% if key != '1' %}
-                    <figure style="--color: rgb(0, 81, 255, {{ 1.0|multiplication:value }});">
+                    <!--style="--color: rgb(25, 0, 255, {{ 1.0|multiplication:value }});"-->
+                    <figure >
                         <a href={% get_value links key %}  onclick="getID()" target="explanation" >
                             <img src={{ "/media/images/"|add:key }} alt="写真" class="scale-img" id="{{ key }}">
 
@@ -66,7 +67,7 @@
                                 {% endif %}
                             {% endif %}
                         </a>
-                        <!--<figcaption>{{ value }}</figcaption>-->
+                        <figcaption>{{ value }}</figcaption>
                     </figure>
                 {% else %}
                     <div></div>

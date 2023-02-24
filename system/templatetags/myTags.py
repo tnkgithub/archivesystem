@@ -14,8 +14,11 @@ def for_text(value):
 
 @register.filter
 def modulo(loopnum, value):
+
     return loopnum % value
 
 @register.filter
 def multiplication(value1, value2):
+    value2 = int(value2 * 10) / 10
+    #value2 = 1.0 - value2
     return value1 * value2

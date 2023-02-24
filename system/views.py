@@ -2,7 +2,7 @@
 from django.shortcuts import render
 from django.views.decorators.clickjacking import xframe_options_exempt
 import pandas as pd
-import scipy.spatial.distance as distance
+import numpy as np
 import itertools
 
 # 類似度の基準値
@@ -16,7 +16,7 @@ for i in som.index:
     list_som.append(i)
 
 # 代表資料(扱いやすくするためリストに変換)
-represent_image = pd.read_csv('system/csvs/rep_image_som_result_3-3.csv', index_col=0)
+represent_image = pd.read_csv('system/csvs/rep_image_som_result_40-60_20230224_112013.csv', index_col=0)
 rep_image = []
 for i in represent_image.index:
     rep_image.append(i)
@@ -135,7 +135,7 @@ def sortForSimilarity(id):
     for i in title_features.index:
         if i != title:
             # コサイン類似度を計算
-            sim = 1 - distance.cosine(title_features.loc[title].to_list(), title_features.loc[i].to_list())
+            sim = cos_similarity(title_features.loc[title].to_list(), title_features.loc[i].to_list())
             # 画像ファイル名を探す
             image_name = dict_title_image[i]
             ''' 類似度が基準値以上のみにする '''
@@ -218,7 +218,7 @@ def part_title(id):
     for key, value in sorted_dict.items():
         part_dict[key] = value
         count += 1
-        if count == 100:
+        if count == 50:
             return part_dict
 
 
@@ -232,7 +232,7 @@ def sort_image_Similarity(id):
     for i in image_features.index:
         if i != id:
             # コサイン類似度を計算
-            sim = 1 - distance.cosine(image_features.loc[id].to_list(), image_features.loc[i].to_list())
+            sim = cos_similarity(image_features.loc[id].to_list(), image_features.loc[i].to_list())
             ''' 類似度が基準値以上のみにする '''
             if sim >= similarity_standard_value:
                 # 辞書に追加
@@ -312,5 +312,8 @@ def part_image(id):
     for key, value in sorted_dict.items():
         part_dict[key] = value
         count += 1
-        if count == 100:
+        if count == 50:
             return part_dict
+
+def cos_similarity(v1, v2):
+    return np.dot(v1, v2) / (np.linalg.norm(v1) * np.linalg.norm(v2))

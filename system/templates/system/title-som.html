@@ -44,7 +44,8 @@
         <div id="container">
             {% for key, value in sorted_dict.items %}
                 {% if key != '-1' %}
-                    <figure style="--color: rgb(0, 81, 255, {{ 1.0|multiplication:value }});">
+                <!--style="--color: hsla({{ 200|multiplication:value }}, 100%, 50%, 40%);"-->
+                    <figure style="--color: rgb(0, 0, 255, {{ 1.0|multiplication:value }});">
                         <a href={% get_value links key %} onclick="getID()" target="explanation" >
                         <img src={{ "/media/images/"|add:key }} alt="写真" class="scale-img" id="{{ key }}">
                         {% if forloop.counter > 71 %}
