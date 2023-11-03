@@ -10,6 +10,7 @@ figure {
     margin: 2px 2px 2px 0px;
     position: relative;
 }
+
 figure img {
     display: block;
     /*margin: 5.5px 5.5px 5.5px 5.5px;*/
@@ -22,12 +23,17 @@ figcaption {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
 .scale-img {
-    transition-duration: 0.1s; /*変化の時間*/
+    transition-duration: 0.1s;
+    /*変化の時間*/
 }
+
 .scale-img:hover {
-    transform: scale(1.05,1.05); /*画像の拡大*/
-    cursor: pointer; /*カーソルをポインターにする*/
+    transform: scale(1.05, 1.05);
+    /*画像の拡大*/
+    cursor: pointer;
+    /*カーソルをポインターにする*/
 }
 
 .fukidashi_under_left {
@@ -38,12 +44,13 @@ figcaption {
     left: 0%;
     bottom: -100px;
     padding: 16px;
-    border:1px solid #333;
+    border: 1px solid #333;
     border-radius: 2px;
     background: rgb(255, 255, 255);
     color: rgb(60, 60, 60);
     font-weight: bold;
 }
+
 .fukidashi_under_center {
     display: none;
     position: absolute;
@@ -53,12 +60,13 @@ figcaption {
     transform: translateX(-50%);
     bottom: -100px;
     padding: 16px;
-    border:1px solid #333;
+    border: 1px solid #333;
     border-radius: 2px;
     background: rgb(255, 255, 255);
     color: rgb(60, 60, 60);
     font-weight: bold;
 }
+
 .fukidashi_under_right {
     display: none;
     position: absolute;
@@ -67,7 +75,7 @@ figcaption {
     right: 0%;
     bottom: -100px;
     padding: 16px;
-    border:1px solid #333;
+    border: 1px solid #333;
     border-radius: 2px;
     background: rgb(255, 255, 255);
     color: rgb(60, 60, 60);
@@ -83,12 +91,13 @@ figcaption {
     left: 0%;
     top: -100px;
     padding: 16px;
-    border:1px solid #333;
+    border: 1px solid #333;
     border-radius: 2px;
     background: rgb(255, 255, 255);
     color: rgb(60, 60, 60);
     font-weight: bold;
 }
+
 .fukidashi_up_center {
     display: none;
     position: absolute;
@@ -98,12 +107,13 @@ figcaption {
     transform: translateX(-50%);
     top: -100px;
     padding: 16px;
-    border:1px solid #333;
+    border: 1px solid #333;
     border-radius: 2px;
     background: rgb(255, 255, 255);
     color: rgb(60, 60, 60);
     font-weight: bold;
 }
+
 .fukidashi_up_right {
     display: none;
     position: absolute;
@@ -112,45 +122,47 @@ figcaption {
     right: 0%;
     top: -100px;
     padding: 16px;
-    border:1px solid #333;
+    border: 1px solid #333;
     border-radius: 2px;
     background: rgb(255, 255, 255);
     color: rgb(60, 60, 60);
     font-weight: bold;
 }
 
-figure img:hover + .fukidashi_under_left{
+figure img:hover+.fukidashi_under_left {
     display: block;
     cursor: pointer;
 }
 
-figure img:hover + .fukidashi_under_center{
+figure img:hover+.fukidashi_under_center {
     display: block;
     cursor: pointer;
 }
 
-figure img:hover + .fukidashi_under_right{
+figure img:hover+.fukidashi_under_right {
     display: block;
     cursor: pointer;
 }
 
 
-figure img:hover + .fukidashi_up_left{
-    display: block;
-    cursor: pointer;
-}
-figure img:hover + .fukidashi_up_center{
-    display: block;
-    cursor: pointer;
-}
-figure img:hover + .fukidashi_up_right{
+figure img:hover+.fukidashi_up_left {
     display: block;
     cursor: pointer;
 }
 
-#container{
+figure img:hover+.fukidashi_up_center {
+    display: block;
+    cursor: pointer;
+}
+
+figure img:hover+.fukidashi_up_right {
+    display: block;
+    cursor: pointer;
+}
+
+#container {
     display: grid;
-    grid-template-columns: repeat(10, minmax(110px, 1fr));
+    grid-template-columns: repeat(66, minmax(90px, 1fr));
     column-gap: 4px;
     row-gap: 4px;
 }

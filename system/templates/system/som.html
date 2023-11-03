@@ -7,72 +7,74 @@
 <!DOCTYPE html>
 <html lang="ja">
 
-    <head>
-        <meta charset="utf-8" />
-        <meta name="vieport" content="width=device-width"/>
-        <title></title>
-        <link href="{% static 'css/for_image_som.css' %}" rel="stylesheet" type="text/css">
+<head>
+    <meta charset="utf-8" />
+    <meta name="vieport" content="width=device-width" />
+    <title></title>
+    <link href="{% static 'css/for_image_som.css' %}" rel="stylesheet" type="text/css">
 
-        <script>
-            function getID() {
-                e = window.event;
-                elem = e.target || e.srcElemnt;
-                elemID = elem.id;
+    <script>
+        function getID() {
+            e = window.event;
+            elem = e.target || e.srcElemnt;
+            elemID = elem.id;
 
-                url = 'main?imageID=' + elemID + '&frame=som';
-                window.open(url, "_parent");
-            }
+            url = 'main?imageID=' + elemID + '&frame=som';
+            window.open(url, "_parent");
+        }
 
-            function scrollToImage() {
-                query = location.search.substring(1);
-                param_list = query.split('&')
-                paramater = param_list[0].split('=');
-                id = paramater[1];
+        function scrollToImage() {
+            query = location.search.substring(1);
+            param_list = query.split('&')
+            paramater = param_list[0].split('=');
+            id = paramater[1];
 
-                element = document.getElementById(id);
+            element = document.getElementById(id);
 
-                element.style.outline = "solid 5px #27acd9";
+            element.style.outline = "solid 5px #27acd9";
 
-                /*
-                element.scrollIntoView({
-                    behavior: "smooth",
-                    block: "center",
-                    inline: "center"
-                });
-                */
-            }
-        </script>
+            /*
+            element.scrollIntoView({
+                behavior: "smooth",
+                block: "center",
+                inline: "center"
+            });
+            */
+        }
+    </script>
 
-    </head>
-    <body>
-        <div id="container">
-            {% for key, value in sorted_dict.items %}
-                {% if key != '1' %}
-                    <!--style="--color: rgb(25, 0, 255, {{ 1.0|multiplication:value }});"-->
-                    <figure >
-                        <a href={% get_value links key %}  onclick="getID()" target="explanation" >
-                            <img src={{ "/media/images/"|add:key }} alt="写真" class="scale-img" id="{{ key }}">
+</head>
 
-                            {% if forloop.counter > 71 %}
-                                {% if forloop.counter0|modulo:10 > 5 %}
-                                    <p class="fukidashi_up_right">{% get_value image_title key %}</p>
-                                {% else %}
-                                    <p class="fukidashi_up_left">{% get_value image_title key %}</p>
-                                {% endif %}
+<body>
+    <div id="container">
+        {% for i in image_som %}
+            {% if i != '1' %}
+                <figure>
+                    <a href={% get_value links i %} onclick="getID()" target="explanation">
+                        <img src={{ "/media/images/" |add:i }} alt="写真" class="scale-img" id="{{ i }}">
+
+                        {% if forloop.counter > 1782 %}
+                            {% if forloop.counter0|modulo:66 > 60 %}
+                                <p class="fukidashi_up_right">{% get_value image_title i %}</p>
                             {% else %}
-                                {% if forloop.counter0|modulo:10 > 5 %}
-                                    <p class="fukidashi_under_right">{% get_value image_title key %}</p>
-                                {% else %}
-                                    <p class="fukidashi_under_left">{% get_value image_title key %}</p>
-                                {% endif %}
+                                <p class="fukidashi_up_left">{% get_value image_title i %}</p>
                             {% endif %}
-                        </a>
-                        <figcaption>{{ value }}</figcaption>
-                    </figure>
-                {% else %}
-                    <div></div>
-                {% endif %}
-            {% endfor %}
-        </div>
-    </body>
+                        {% else %}
+                            {% if forloop.counter0|modulo:66 > 60 %}
+                                <p class="fukidashi_under_right">{% get_value image_title i %}</p>
+                            {% else %}
+                                <p class="fukidashi_under_left">{% get_value image_title i %}</p>
+                            {% endif %}
+                        {% endif %}
+                    </a>
+                </figure>
+            {% else %}
+                <div></div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</body>
+
 </html>
+
+

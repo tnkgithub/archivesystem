@@ -11,15 +11,11 @@ similarity_standard_value = 0.0
 #%%
 # 画像によるsom結果(扱いやすくするためリストに変換)
 som = pd.read_csv('system/csvs/image_som_result20230110_073816.csv', index_col=0)
-list_som = []
-for i in som.index:
-    list_som.append(i)
+list_som = som.index.to_list()
 
 # 代表資料(扱いやすくするためリストに変換)
-represent_image = pd.read_csv('system/csvs/rep_image_som_result_40-60_20230224_112013.csv', index_col=0)
-rep_image = []
-for i in represent_image.index:
-    rep_image.append(i)
+represent_image = pd.read_csv('system/csvs/rep_image_som_result_3-3.csv', index_col=0)
+rep_image = represent_image.index.to_list()
 
 # 画像ファイル名→タイトル変換用辞書
 image_title = pd.read_csv('system/csvs/imageName_title_rename_dict.csv', index_col=0).to_dict()
@@ -68,6 +64,7 @@ def imgSOMView(request):
         frame_split = frame_list.split(' ')
         frame = frame_split[0]
         ctx["frame"] = frame
+
     return render(request, 'system/img-som.html', ctx)
 
 # som画面用
@@ -75,12 +72,15 @@ def SOM(request):
     ctx = {}
     ctx["image_title"] = image_title['col2']
     ctx["links"] = links['col2']
-    if "imageID" in request.GET:
-        id_list = request.GET["imageID"]
-        id_split = id_list.split(' ')
-        id = id_split[0]
-        ctx["spiral_dict"] = spiral_image_dict(id)
-        ctx["sorted_dict"] = part_image(id)
+    ctx["image_som"] = list_som
+
+    # if "imageID" in request.GET:
+    #     id_list = request.GET["imageID"]
+    #     id_split = id_list.split(' ')
+    #     id = id_split[0]
+
+    #     ctx["spiral_dict"] = spiral_image_dict(id)
+    #     ctx["sorted_dict"] = part_image(id)
 
     return render(request, 'system/som.html', ctx)
 
@@ -92,6 +92,7 @@ def menu(request):
         id_split = id_list.split(' ')
         id = id_split[0]
         ctx["imageID"] = id
+
     return render(request, 'system/menu.html', ctx)
 
 # タイトル画面用
@@ -101,8 +102,7 @@ def titleSOMView(request):
     ctx["image_title"] = image_title['col2']
     ctx["links"] = links['col2']
 
-
-    ''' urlから表示したい画像のidタグを取得 '''
+    # urlから表示したい画像のidタグを取得
     if "imageID" in request.GET:
         id_list = request.GET["imageID"]
         id_split = id_list.split(' ')
@@ -120,7 +120,7 @@ def sort_by_similarity(dict):
     sorted_dict.update(temporary_sorted_dict)
     return sorted_dict
 
-''' タイトルの類似度を計算し、ソートして返す '''
+# タイトルの類似度を計算し、ソートして返す
 def sortForSimilarity(id):
     # 画像ファイル名→タイトル(管理番号あり)に変換用
     title_dict = image_title_num['col2']
@@ -131,7 +131,8 @@ def sortForSimilarity(id):
     sorted_dict[id] = 1.0
     # タイトル(管理番号あり)→画像ファイル名に変換用
     dict_title_image = title_image['col2']
-    ''' 類似度を計算し、辞書を作成 '''
+
+    # 類似度を計算し、辞書を作成
     for i in title_features.index:
         if i != title:
             # コサイン類似度を計算
@@ -143,10 +144,10 @@ def sortForSimilarity(id):
                 # 辞書に追加
                 sorted_dict[image_name] = sim
     sorted_dict = sort_by_similarity(sorted_dict)
-    '''
-    for key in sorted_dict.keys():
-        sorted_list.append(key)
-    '''
+
+    # for key in sorted_dict.keys():
+    #     sorted_list.append(key)
+
     return sorted_dict
 
 #%%
@@ -223,25 +224,25 @@ def part_title(id):
 
 
 
-''' タイトルの類似度を計算し、ソートして返す '''
+# タイトルの類似度を計算し、ソートして返す
 def sort_image_Similarity(id):
     # ソート後の辞書
     sorted_dict = {}
     sorted_dict[id] = 1.0
-    ''' 類似度を計算し、辞書を作成 '''
+    # 類似度を計算し、辞書を作成
     for i in image_features.index:
         if i != id:
             # コサイン類似度を計算
             sim = cos_similarity(image_features.loc[id].to_list(), image_features.loc[i].to_list())
-            ''' 類似度が基準値以上のみにする '''
+            # 類似度が基準値以上のみにする
             if sim >= similarity_standard_value:
                 # 辞書に追加
                 sorted_dict[i] = sim
     sorted_dict = sort_by_similarity(sorted_dict)
-    '''
-    for key in sorted_dict.keys():
-        sorted_list.append(key)
-    '''
+
+    # for key in sorted_dict.keys():
+    #     sorted_list.append(key)
+
     return sorted_dict
 
 def spiral_image_dict(id):
