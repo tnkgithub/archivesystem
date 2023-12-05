@@ -3,18 +3,16 @@
 <!DOCTYPE html>
 
 <html lang="ja">
-
     <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width" />
+        <meta name="viewport" content="width=device-width"/>
         <title></title>
-        <meta name="description" content="" />
+        <meta name="description" content=""/>
         <link href="{% static 'css/botton.css' %}" rel="stylesheet" type="text/css">
 
 
 
     </head>
-
     <body>
         <br>
         <a href="som?imageID={{imageID}}" target="somFrame" class="btn_01">画像</a>
@@ -22,7 +20,6 @@
         <a href="title?imageID={{imageID}}" target="somFrame" class="btn_02">内容</a>
         <br>
         <br>
-        <a href="{% url 'rep-image' %}" target="_parent" class="btn_03">代表資料へ戻る</a>
+        <a href="{% url "rep-image" %}" target="_parent" class="btn_03">代表資料へ戻る</a>
     </body>
-
 </html>

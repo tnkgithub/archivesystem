@@ -3,6 +3,16 @@
     --font_color: hsla(360, 0%, 100%, 1);
 }
 
+header {
+    display: flex;
+    width: 100%;
+    height: 50px;
+    font-size: 20px;
+    color: white;
+    background-color: rgb(0, 50, 255);
+    align-items: center;
+}
+
 figure {
     display: inline-block;
     margin: 2px 2px 2px 2px;
@@ -10,14 +20,15 @@ figure {
     background-color: var(--color);
     position: relative;
 }
+
 figure img {
     display: block;
-    margin: 5.5px 5.5px 5.5px 5.5px;
-    width: 90%;
+    width: 100%;
     /*margin: 0px 0px 2px 0px;*/
 }
+
 figcaption {
-    overflow:hidden;
+    overflow: hidden;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
@@ -25,15 +36,27 @@ figcaption {
     color: var(--font_color);
     text-align: center;
 }
+
 .scale-img {
-    transition-duration: 0.1s; /*変化の時間*/
-}
-.scale-img:hover {
-    transform: scale(1.05, 1.05); /*画像の拡大*/
-    cursor: pointer; /*カーソルをポインターにする*/
+    transition-duration: 0.1s;
+    /*変化の時間*/
 }
 
-.fukidashi_under_left {
+.scale-img:hover {
+    transform: scale(1.05, 1.05);
+    /*画像の拡大*/
+    cursor: pointer;
+    /*カーソルをポインターにする*/
+}
+
+#container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+    column-gap: 4px;
+    row-gap: 4px;
+}
+
+/* .fukidashi_under_left {
     display: none;
     position: absolute;
     z-index: 10;
@@ -41,12 +64,13 @@ figcaption {
     left: 0%;
     bottom: -100px;
     padding: 16px;
-    border:1px solid #333;
+    border: 1px solid #333;
     border-radius: 2px;
     background: rgb(255, 255, 255);
     color: rgb(60, 60, 60);
     font-weight: bold;
 }
+
 .fukidashi_under_center {
     display: none;
     position: absolute;
@@ -56,12 +80,13 @@ figcaption {
     transform: translateX(-50%);
     bottom: -100px;
     padding: 16px;
-    border:1px solid #333;
+    border: 1px solid #333;
     border-radius: 2px;
     background: rgb(255, 255, 255);
     color: rgb(60, 60, 60);
     font-weight: bold;
 }
+
 .fukidashi_under_right {
     display: none;
     position: absolute;
@@ -70,7 +95,7 @@ figcaption {
     right: 0%;
     bottom: -100px;
     padding: 16px;
-    border:1px solid #333;
+    border: 1px solid #333;
     border-radius: 2px;
     background: rgb(255, 255, 255);
     color: rgb(60, 60, 60);
@@ -86,12 +111,13 @@ figcaption {
     left: 0%;
     top: -100px;
     padding: 16px;
-    border:1px solid #333;
+    border: 1px solid #333;
     border-radius: 2px;
     background: rgb(255, 255, 255);
     color: rgb(60, 60, 60);
     font-weight: bold;
 }
+
 .fukidashi_up_center {
     display: none;
     position: absolute;
@@ -101,12 +127,13 @@ figcaption {
     transform: translateX(-50%);
     top: -100px;
     padding: 16px;
-    border:1px solid #333;
+    border: 1px solid #333;
     border-radius: 2px;
     background: rgb(255, 255, 255);
     color: rgb(60, 60, 60);
     font-weight: bold;
 }
+
 .fukidashi_up_right {
     display: none;
     position: absolute;
@@ -115,47 +142,40 @@ figcaption {
     right: 0%;
     top: -100px;
     padding: 16px;
-    border:1px solid #333;
+    border: 1px solid #333;
     border-radius: 2px;
     background: rgb(255, 255, 255);
     color: rgb(60, 60, 60);
     font-weight: bold;
 }
 
-figure img:hover + .fukidashi_under_left{
+figure img:hover+.fukidashi_under_left {
     display: block;
     cursor: pointer;
 }
 
-figure img:hover + .fukidashi_under_center{
+figure img:hover+.fukidashi_under_center {
     display: block;
     cursor: pointer;
 }
 
-figure img:hover + .fukidashi_under_right{
+figure img:hover+.fukidashi_under_right {
     display: block;
     cursor: pointer;
 }
 
 
-figure img:hover + .fukidashi_up_left{
-    display: block;
-    cursor: pointer;
-}
-figure img:hover + .fukidashi_up_center{
-    display: block;
-    cursor: pointer;
-}
-figure img:hover + .fukidashi_up_right{
+figure img:hover+.fukidashi_up_left {
     display: block;
     cursor: pointer;
 }
 
-#container{
-    display: grid;
-    grid-template-columns: repeat(10, minmax(110px, 1fr));
-    column-gap: 4px;
-    row-gap: 4px;
+figure img:hover+.fukidashi_up_center {
+    display: block;
+    cursor: pointer;
 }
 
-
+figure img:hover+.fukidashi_up_right {
+    display: block;
+    cursor: pointer;
+} */

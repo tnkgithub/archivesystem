@@ -1,11 +1,21 @@
 :root {
-    /*--color: rgb(0, 81, 255, 1.0);*/
-    --color: hsla(360, 100%, 50%, 80%);
+    --color: rgb(0, 0, 255, 1.0);
+    --font_color: hsla(360, 100%, 50%, 80%);
+}
+
+header {
+    display: flex;
+    width: 100%;
+    height: 50px;
+    font-size: 20px;
+    color: white;
+    background-color: rgb(255, 85, 0);
+    align-items: center;
 }
 
 figure {
     display: inline-block;
-    /*background-color: var(--color);*/
+    background-color: var(--color);
     width: 100%;
     margin: 2px 2px 2px 0px;
     position: relative;
@@ -19,9 +29,13 @@ figure img {
 }
 
 figcaption {
-    white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    font-size: 0.8em;
+    color: var(--font_color);
+    text-align: center;
 }
 
 .scale-img {
@@ -36,6 +50,14 @@ figcaption {
     /*カーソルをポインターにする*/
 }
 
+#container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+    column-gap: 4px;
+    row-gap: 4px;
+}
+
+/*
 .fukidashi_under_left {
     display: none;
     position: absolute;
@@ -158,11 +180,4 @@ figure img:hover+.fukidashi_up_center {
 figure img:hover+.fukidashi_up_right {
     display: block;
     cursor: pointer;
-}
-
-#container {
-    display: grid;
-    grid-template-columns: repeat(66, minmax(110px, 1fr));
-    column-gap: 4px;
-    row-gap: 4px;
-}
+} */

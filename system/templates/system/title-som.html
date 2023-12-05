@@ -8,66 +8,81 @@
         <meta charset="utf-8" />
         <meta name="vieport" content="width=device-width"/>
         <title></title>
-        <link href="{% static 'css/for_title_som.css' %}" rel="stylesheet" type="text/css">
-        <script>
-            function getID() {
-                e = window.event;
-                elem = e.target || e.srcElemnt;
-                elemID = elem.id;
-                self_url = 'main?imageID=' + elemID + '&frame=title';
-                window.open(self_url, "_parent")
-            }
+        {% load static %}
+        {% load myTags %}
 
-            function scrollToImage() {
-                query = parent.location.search.substring(1);
-                param_list = query.split('&')
-                paramater = param_list[0].split('=');
-                id = paramater[1];
+        <!DOCTYPE html>
+        <html lang="ja">
 
-                element = document.getElementById(id);
+            <head>
+                <meta charset="utf-8" />
+                <meta name="vieport" content="width=device-width"/>
+                <title></title>
+                <link href="{% static 'css/for_title_som.css' %}" rel="stylesheet" type="text/css">
+                <script>
+                    function getID() {
+                        e = window.event;
+                        elem = e.target || e.srcElemnt;
+                        elemID = elem.id;
+                        self_url = 'main?imageID=' + elemID + '&frame=title';
+                        window.open(self_url, "_parent")
+                    }
 
-                element.style.outline = "solid 5px #27acd9";
+                    function scrollToImage() {
+                        query = parent.location.search.substring(1);
+                        param_list = query.split('&')
+                        paramater = param_list[0].split('=');
+                        id = paramater[1];
 
-                /*
-                element.scrollIntoView({
-                    behavior: "smooth",
-                    block: "center",
-                    inline: "center"
-                });
-                */
-            }
-        </script>
+                        element = document.getElementById(id);
+
+                        element.style.outline = "solid 5px #27acd9";
+
+                        /*
+                        element.scrollIntoView({
+                            behavior: "smooth",
+                            block: "center",
+                            inline: "center"
+                        });
+                        */
+                    }
+                </script>
 
 
-    </head>
-    <body>
-        <div id="container">
-            {% for key, value in sorted_dict.items %}
-                {% if key != '-1' %}
-                <!--style="--color: hsla({{ 200|multiplication:value }}, 100%, 50%, 40%);"-->
-                    <figure style="--color: rgb(0, 0, 255, {{ 1.0|multiplication:value }});">
-                        <a href={% get_value links key %} onclick="getID()" target="explanation" >
-                        <img src={{ "/media/images/"|add:key }} alt="写真" class="scale-img" id="{{ key }}">
-                        {% if forloop.counter > 71 %}
-                            {% if forloop.counter0|modulo:10 > 5 %}
-                                <p class="fukidashi_up_right">{% get_value image_title key %}</p>
-                            {% else %}
-                                <p class="fukidashi_up_left">{% get_value image_title key %}</p>
-                            {% endif %}
+            </head>
+            <body>
+                <header>
+                    <p>　内容の類似度順</p>
+                </header>
+                <br>
+                <div id="container">
+                    {% for key, value in sorted_dict.items %}
+                        {% if key != '-1' %}
+                        <!--style="--color: hsla({{ 200|multiplication:value }}, 100%, 50%, 40%);"-->
+                            <figure style="--color: rgb(0, 50, 255, {{ 1.0|multiplication:value }});">
+                                <a href={% get_value links key %} onclick="getID()" target="explanation" >
+                                <img src={{ "/media/images/"|add:key }} alt="写真" class="scale-img" id="{{ key }}">
+
+                                {% comment %} {% if forloop.counter > 25 %}
+                                    {% if forloop.counter0|modulo:10 > 5 %}
+                                        <p class="fukidashi_up_right">{% get_value image_title key %}</p>
+                                    {% else %}
+                                        <p class="fukidashi_up_left">{% get_value image_title key %}</p>
+                                    {% endif %}
+                                {% else %}
+                                    {% if forloop.counter0|modulo:10 > 5 %}
+                                        <p class="fukidashi_under_right">{% get_value image_title key %}</p>
+                                    {% else %}
+                                        <p class="fukidashi_under_left">{% get_value image_title key %}</p>
+                                    {% endif %}
+                                {% endif %} {% endcomment %}
+                                </a>
+                                <figcaption style="--font_color: hsla(360, 0%, {% for_text value %}%, 1)">{% get_value image_title key %}</figcaption>
+                            </figure>
                         {% else %}
-                            {% if forloop.counter0|modulo:10 > 5 %}
-                                <p class="fukidashi_under_right">{% get_value image_title key %}</p>
-                            {% else %}
-                                <p class="fukidashi_under_left">{% get_value image_title key %}</p>
-                            {% endif %}
+                            <p>　　</p>
                         {% endif %}
-                        </a>
-                        <figcaption style="--font_color: hsla(360, 0%, {% for_text value %}%, 1)">{% get_value image_title key %}</figcaption>
-                    </figure>
-                {% else %}
-                    <p>　　</p>
-                {% endif %}
-            {% endfor %}
-        </div>
-    </body>
-</html>
+                    {% endfor %}
+                </div>
+            </body>
+        </html>
